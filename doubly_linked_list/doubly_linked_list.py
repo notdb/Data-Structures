@@ -1,4 +1,7 @@
-# Each ListNode holds a reference to its previous node as well as its next node in the List.
+"""Each ListNode holds a reference to its previous node as well as 
+next node in the List.
+"""
+
 class ListNode:
   def __init__(self, value, prev=None, next=None):
     self.value = value
@@ -48,7 +51,7 @@ class DoublyLinkedList:
   def add_to_head(self, value):
     new_node = ListNode(value, None, None)
     self.length += 1
-    if not self.head and noto self.tail:
+    if not self.head and not self.tail:
         self.head = new_node
         self.tail = new_node
     else:
@@ -73,7 +76,7 @@ class DoublyLinkedList:
     self.head.prev = None
     return current_head.value
 
-   """Wraps the given value in a ListNode and inserts it 
+  """Wraps the given value in a ListNode and inserts it
   as the new tail of the list. Don't forget to handle 
   the old tail node's next pointer accordingly."""
   def add_to_tail(self, value):
