@@ -21,7 +21,10 @@ class LRUCache:
   key-value pair doesn't exist in the cache. 
   """
   def get(self, key):
-    pass
+    if key not in self.storage:
+        return None
+    #self.queue.storage.move_to_front(key)
+    return self.storage[key]
 
   """
   Adds the given key-value pair to the cache. The newly-
@@ -48,6 +51,11 @@ class LRUCache:
 testCache = LRUCache()
 
 testCache.set(1, 1)
+testCache.set(1, 2)
+testCache.set('a', 'foo')
+testCache.set('b', 'foo2')
+testCache.set('a', 'bar')
+testCache.get('a')
 
 
 
