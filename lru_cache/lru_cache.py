@@ -1,4 +1,4 @@
-from doubly_linked_list import DoublyLinkedList
+from dll_queue import Queue
 
 class LRUCache:
   """
@@ -10,7 +10,7 @@ class LRUCache:
   """
   def __init__(self, limit=10):
     self.limit = 0
-    self.dll = DoublyLinkedList()
+    self.queue = Queue()
     self.storage = {}
 
   """
@@ -34,4 +34,19 @@ class LRUCache:
   the newly-specified value. 
   """
   def set(self, key, value):
-    pass
+    self.storage[key] = value
+    print(self.storage)
+    self.queue.enqueue(key)
+    print(self.queue.len())
+
+testCache = LRUCache()
+
+testCache.set(1, 'too')
+
+
+
+
+# Testing a new method of adding comments to a python file without breaking it
+# First we need to get the storage (dict) working, then we get the queue working, then we start logic to add things to the queue and dict
+
+# We have the que and storage working
