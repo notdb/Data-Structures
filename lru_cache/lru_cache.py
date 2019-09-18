@@ -34,14 +34,20 @@ class LRUCache:
   the newly-specified value. 
   """
   def set(self, key, value):
+    if self.queue.len() == 10:
+        del self.storage[self.queue.dequeue()]
+    if key in self.storage:
+        self.storage[key] = value
     self.storage[key] = value
     print(self.storage)
     self.queue.enqueue(key)
     print(self.queue.len())
-
+    print(self.queue.len())
+    print(self.storage)
+   
 testCache = LRUCache()
 
-testCache.set(1, 'too')
+testCache.set(1, 1)
 
 
 
@@ -49,4 +55,14 @@ testCache.set(1, 'too')
 # Testing a new method of adding comments to a python file without breaking it
 # First we need to get the storage (dict) working, then we get the queue working, then we start logic to add things to the queue and dict
 
-# We have the que and storage working
+# We have the que and storage working set
+
+# Next step: If the cache is already at max capacity before this entry is added, then the oldest entry in the cache needs to be removed to make room.
+
+# Something like if self.queue.len() is probably 10, maybe 9 who knows, self.queue.dequeue()
+
+# There's something in the spec about a limit of 10, I don't know why thats there, when the queue data structure already has a list that I'm using to check how many items are in the queue.
+
+# Done probably, we'll see
+# Don't have a way to see whats in my queue, but it's probably working
+# Need to remove the element that got pushed out of the queue, from the dictionary as well
