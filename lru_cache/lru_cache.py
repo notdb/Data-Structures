@@ -74,3 +74,5 @@ testCache.get('a')
 # Done probably, we'll see
 # Don't have a way to see whats in my queue, but it's probably working
 # Need to remove the element that got pushed out of the queue, from the dictionary as well
+
+# Need to fix. I was putting the dictionary in the linked list (queue), and I need to reverse this. Essentially, putting the linked list node containing the item in the dictionary. This way you can get random access to the linked list. 
