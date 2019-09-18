@@ -29,16 +29,22 @@ class BinarySearchTree:
   # What is the root of a binary search tree really?
   # Does it have 0,1, or 2 branches. A tree can only have one root and two branches
   # But we don't know for example, if a root has one branch, we don't know if we should insert there. For example, we have (this is hard to describe on text), but a tree of 3-(l)2-(r)5 and we want to insert 4. So we start at three, four is greater than 3, so we go to five. Four is less than five, so we'll insert it there, unless, there's another element there.
+  # We have to initialize the tree with a value, so there'll always be a root initally.
   def insert(self, value):
-    # covers the first branch
-    if self.root == None:
-        value = self.root
-        
-    if value < self.root:
-        value = self.left
-    if value >= self.root:
-        value = self.right
-        
+    # When we create the tree, we always will have a root because the function call requires a value, which may become the root
+    if value < self.value:
+        self.left = value
+    if value >= self.value:
+        self.right = value
+    print(self.value)
+    print(self.left)
+    print(self.right)
+    # We have to find an empty spot, or it has to go down.
+    # By going down, we mean recursion
+    # Do we have an exit condition?
+    # The exit condition is when we can place value in self.left or self.right.
+    # We have the two exit conditions set up already
+    # I think
 
   # * `contains` searches the binary search tree for the input value, 
   # returning a boolean indicating whether the value exists in the tree or not.
@@ -59,3 +65,9 @@ class BinarySearchTree:
 
   def for_each(self, cb):
     pass
+
+bst = BinarySearchTree(3)
+
+bst.insert(2)
+bst.insert(5)
+bst.insert(5)
