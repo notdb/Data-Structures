@@ -1,5 +1,4 @@
 # Data Structures 
-
 Topics:
  * Queues
  * Doubly Linked Lists

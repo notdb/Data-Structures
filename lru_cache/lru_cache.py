@@ -1,3 +1,5 @@
+from dll_queue import Queue
+
 class LRUCache:
   """
   Our LRUCache class keeps track of the max number of nodes it
@@ -7,7 +9,9 @@ class LRUCache:
   to every node stored in the cache.
   """
   def __init__(self, limit=10):
-    pass
+    self.limit = 0
+    self.queue = Queue()
+    self.storage = {}
 
   """
   Retrieves the value associated with the given key. Also
@@ -17,7 +21,10 @@ class LRUCache:
   key-value pair doesn't exist in the cache. 
   """
   def get(self, key):
-    pass
+    if key not in self.storage:
+        return None
+    #self.queue.storage.move_to_front(key)
+    return self.storage[key]
 
   """
   Adds the given key-value pair to the cache. The newly-
@@ -30,4 +37,42 @@ class LRUCache:
   the newly-specified value. 
   """
   def set(self, key, value):
-    pass
+    if self.queue.len() == 10:
+        del self.storage[self.queue.dequeue()]
+    if key in self.storage:
+        self.storage[key] = value
+    self.storage[key] = value
+    print(self.storage)
+    self.queue.enqueue(key)
+    print(self.queue.len())
+    print(self.queue.len())
+    print(self.storage)
+   
+testCache = LRUCache()
+
+testCache.set(1, 1)
+testCache.set(1, 2)
+testCache.set('a', 'foo')
+testCache.set('b', 'foo2')
+testCache.set('a', 'bar')
+testCache.get('a')
+
+
+
+
+# Testing a new method of adding comments to a python file without breaking it
+# First we need to get the storage (dict) working, then we get the queue working, then we start logic to add things to the queue and dict
+
+# We have the que and storage working set
+
+# Next step: If the cache is already at max capacity before this entry is added, then the oldest entry in the cache needs to be removed to make room.
+
+# Something like if self.queue.len() is probably 10, maybe 9 who knows, self.queue.dequeue()
+
+# There's something in the spec about a limit of 10, I don't know why thats there, when the queue data structure already has a list that I'm using to check how many items are in the queue.
+
+# Done probably, we'll see
+# Don't have a way to see whats in my queue, but it's probably working
+# Need to remove the element that got pushed out of the queue, from the dictionary as well
+
+# Need to fix. I was putting the dictionary in the linked list (queue), and I need to reverse this. Essentially, putting the linked list node containing the item in the dictionary. This way you can get random access to the linked list. 
