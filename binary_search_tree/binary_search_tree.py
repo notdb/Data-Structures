@@ -59,8 +59,28 @@ class BinarySearchTree:
   # We can stop at the first instance of a value
   # We know it's not found if we get to a node that doesn't have children
 
+  # This should be similar to the other one (insert)
+  # Take the number, and compare, if it's bigger we know the number will be on the right side, if it's smaller we know it'll be on the left (eventually)
+  # to be continued
+  # Start with the initial comparison, check once, and then we do recursion, because a tree is only three parts
+
   def contains(self, target):
-    pass
+    if target == self.value:
+        return True
+    if target < self.value:
+        if self.left == None:
+            return False
+        if target < self.left.value:
+            self.left.contains(target)
+        else:
+            return True
+    if target >= self.value:
+        if self.right == None:
+            return False
+        if target >= self.right.value:
+            self.right.contains(target)
+        else:
+            return True
 
   # * `get_max` returns the maximum value in the binary search tree.
   def get_max(self):
@@ -73,8 +93,9 @@ class BinarySearchTree:
   def for_each(self, cb):
     pass
 
-bst = BinarySearchTree(3)
+bst = BinarySearchTree(5)
 
 bst.insert(2)
-bst.insert(5)
-bst.insert(6)
+bst.insert(3)
+bst.insert(7)
+bst.contains(7)
