@@ -18,8 +18,6 @@ class BinarySearchTree:
     self.value = value
     self.left = None
     self.right = None
-    self.root = None
-    self.currentRoot = None
   # * `insert` adds the input value to the binary search tree, adhering to the
   # rules of the ordering of elements in a binary search tree.
   # Need to traverse to find spot to insert
@@ -33,18 +31,27 @@ class BinarySearchTree:
   def insert(self, value):
     # When we create the tree, we always will have a root because the function call requires a value, which may become the root
     if value < self.value:
-        self.left = value
+        if self.left == None:
+            self.left = BinarySearchTree(value)
+            print(self.left.value)
+        else:
+            print(self.left.value)
+            self.left.insert(value)
     if value >= self.value:
-        self.right = value
-    print(self.value)
-    print(self.left)
-    print(self.right)
+        if self.right == None:
+            self.right = BinarySearchTree(value)
+            print(self.right.value)
+        else:
+            self.right.insert(value)
+    #print(self.left)
+    #print(self.right)
     # We have to find an empty spot, or it has to go down.
     # By going down, we mean recursion
     # Do we have an exit condition?
     # The exit condition is when we can place value in self.left or self.right.
     # We have the two exit conditions set up already
     # I think
+    # Well sort of. We need to check if self.right or self.left is empty first, to see if we can insert a node there. If a node exists there, then we should create a new binary tree (recursion goes here), with that node as the root. Then we can insert the current value maybe into that new tree.
 
   # * `contains` searches the binary search tree for the input value, 
   # returning a boolean indicating whether the value exists in the tree or not.
@@ -70,4 +77,4 @@ bst = BinarySearchTree(3)
 
 bst.insert(2)
 bst.insert(5)
-bst.insert(5)
+bst.insert(6)
