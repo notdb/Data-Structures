@@ -2,7 +2,7 @@ import sys
 sys.path.append('../queue_and_stack')
 from dll_queue import Queue
 from dll_stack import Stack
-
+import random
 # Questions:
 # Only ints? 
 # Negative numbers?
@@ -83,19 +83,46 @@ class BinarySearchTree:
             return True
 
   # * `get_max` returns the maximum value in the binary search tree.
+  # In theory, the max value should always be the furthest thing to the right. Most likely.
   def get_max(self):
-    pass
+    if self.right == None:
+        return self.value
+    if self.right.value:
+        self.right.get_max()
 
   # * `for_each` performs a traversal of _every_ node in the tree, executing
   # the passed-in callback function on each tree node value. There is a myriad of ways to
   # perform tree traversal; in this case any of them should work. 
-
+  # previously we've been iterating through one side of the tree at a time, now we just need to do both sides. Two exit conditions. One for each side (none) otherwise call foreach on everything.
   def for_each(self, cb):
-    pass
+    if self.value is None:
+        return 0
+    #self.for_each(cb)
+    if self.right is None:
+        return 0
+    else:
+        self.right.for_each(cb)
+    if self.left is None:
+        return 0
+    else:
+        self.left.for_each(cb)
 
 bst = BinarySearchTree(5)
+arr = []
+cb = lambda x: arr.append(x)
 
-bst.insert(2)
-bst.insert(3)
-bst.insert(7)
-bst.contains(7)
+v1 = random.randint(1, 101)
+v2 = random.randint(1, 101)
+v3 = random.randint(1, 101)
+v4 = random.randint(1, 101)
+v5 = random.randint(1, 101)
+
+bst.insert(v1)
+bst.insert(v2)
+bst.insert(v3)
+bst.insert(v4)
+bst.insert(v5)
+
+bst.for_each(cb)
+
+print(arr)
